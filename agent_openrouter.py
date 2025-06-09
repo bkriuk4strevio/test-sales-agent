@@ -8,7 +8,7 @@ class OpenRouterSalesAgent:
         # Initialize OpenRouter client
         self.client = openai.OpenAI(
             base_url="https://openrouter.ai/api/v1",
-            api_key="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"
+            api_key="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"
         )
         
         # Initialize memory (simple list to store conversation history)
