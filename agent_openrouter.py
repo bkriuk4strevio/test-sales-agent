@@ -2,13 +2,23 @@ import openai
 from typing import List, Dict
 import json
 import os
+import streamlit as st
 
 class OpenRouterSalesAgent:
     def __init__(self):
+        # Get API key from Streamlit secrets or environment variables
+        try:
+            api_key = st.secrets["OPENROUTER_API_KEY"]
+        except:
+            api_key = os.environ.get("OPENROUTER_API_KEY")
+        
+        if not api_key:
+            raise ValueError("OpenRouter API key not found. Please set it in Streamlit secrets or environment variables.")
+        
         # Initialize OpenRouter client
         self.client = openai.OpenAI(
             base_url="https://openrouter.ai/api/v1",
-            api_key="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"
+            api_key=api_key
         )
         
         # Initialize memory (simple list to store conversation history)
