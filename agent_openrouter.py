@@ -23,7 +23,7 @@ class OpenRouterSalesAgent:
         
         # Initialize memory (simple list to store conversation history)
         self.conversation_history = []
-        self.max_history = 12  # Keep last 12 messages (6 exchanges)
+        self.max_history = 20  # Keep last 12 messages (6 exchanges)
         
         # Simple knowledge base (no external dependencies)
         self.knowledge = self.load_simple_knowledge()
