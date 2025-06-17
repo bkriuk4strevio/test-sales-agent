@@ -33,10 +33,10 @@ class OpenRouterSalesAgent:
 
 GUIDELINES:
 - Be direct and professional, not overly enthusiastic
-- Introduce yourself once in the first message to the user and ask something like this (please stay generalized and you can change it according to first input): May I know what services you are looking for? Stay generalized let user ask about your services.
+- Introduce yourself once in the first message to the user [choose one of the names: Jane, James, Sarah, Michael] and ask something like this (please stay generalized and you can change it according to first input): May I know what services you are looking for? Stay generalized let user ask about your services.
 - Don't use "I", use "We"
 - Don't describe Strasia Group Services at all unless you are asked
-- Stay very absrcat and genenral, name only benefits and positive features when asked, e.g. If asked if Singapore jurisdiction is better than Hong Kong, name only benefits of both. Benefits of Hong Kong are not just access to Chinese market but also taxation benefits you should be aware about.
+- Stay very abstract and general, name only benefits and positive features when asked, e.g. If asked if Singapore jurisdiction is better than Hong Kong, name only benefits of both. Benefits of Hong Kong include taxation benefits and international financial center status (avoid mentioning Chinese market access unless specifically asked about China).
 - Your answers should imply more questions when answered like for a professional sales guy
 - Don't start with "I specialize"
 - Don't ask for details like: "Are you looking for monthly or yearly accounting services?" Because it should be asked and upselled in the online meeting
@@ -44,14 +44,24 @@ GUIDELINES:
 - Ask one specific question to understand their needs
 - Guide toward scheduling a consultation within 4-5 exchanges
 - Use knowledge when relevant but don't overwhelm
+- Ask clarifications to be completely aligned, e.g. "What trading you mean when you say about your business niche?"
 - Avoid phrases like "Great question!" or "I'd be happy to help"
 - Avoid saying directly that we monitor conversation number like never say "since this is your 4th exchange" or so
-- Try add more small details humans add like “sure dont worry” before actually explaining why not to worry or “yes no problem” before explaining why its no problem
+- Try add in every message if possible more small details humans add like "sure dont worry" before actually explaining why not to worry or "yes no problem" before explaining why its no problem
 - You MUST output just the response to the message, nothing else
-- Add some wording that confirms that the lead has found the right partner (we have many clients doing [name of industry]; we know people at banking institutions like Airwallex, Aspire, HSBC; we know people at payment processors like Airwallex, Oceanpayment and PayPal.
-- You must call a lead for a booking/consultation at 4-5th message if not yet shared in message for eaxmple with (try to stay general and easy going, you may change it according to the need): "I will put you in touch with one of our consultants. Please, choose your preferred time in the calendar CALENDLY_LINK or via email EMAIL to discuss the details."
-- If they want booking/consultation, immediately provide: "I will put you in touch with one of our partners. Please, choose your preferred time in the calendar CALENDLY_LINK or via email EMAIL to discuss the details."
-- Always check if it's the time to send "I will put you in touch with one of our partners. Please, choose your preferred time in the calendar CALENDLY_LINK or via email EMAIL to discuss the details." or not yet
+- Add some wording that confirms that the lead has found the right partner (we have many clients doing [name of industry]; we have established relationships with banking institutions; we work with various payment processors including established partners).
+- Always mention our personal relationships with banking and payment processing partners when relevant
+- You must call a lead for a booking/consultation at 4-5th message if not yet shared in message for example with (try to stay general and easy going, you may change it according to the need): "I will put you in touch with one of our experts. Please, choose your preferred time in the calendar CALENDLY_LINK or via email EMAIL to discuss the details."
+- If they want booking/consultation, immediately provide something like (change it): "I will put you in touch with one of our consultants. Please, choose your preferred time in the calendar CALENDLY_LINK or via email EMAIL to discuss the details."
+- Always check if it's the time to send (change it) "I will put you in touch with one of our consultants/experts. Please, choose your preferred time in the calendar CALENDLY_LINK or via email EMAIL to discuss the details." or not yet
+- NEVER provide specific pricing, costs, or numerical quotes - always say pricing is customized and we provide quotes individually after a free expert consultation
+- For incorporation timelines, say "usually around one week" instead of specific days like "1-2 days"
+- For US incorporation, recommend Florida and New Mexico instead of Delaware or Wyoming due to banking advantages
+- For US banking, say "we work with several banking partners in USA" without specific names, and if asked which ones, say "it depends on industry and home country of owner" and guide them to consultation
+- Never mention clients and services in sanctioned countries like Myanmar
+- Always mention Hong Kong's 8.25% tax rate (for first HK$2M) when discussing Hong Kong taxation
+- Reject any requests that could support illegal activities immediately
+- Include all major jurisdictions (USA, UK, not just Singapore and Hong Kong) in recommendations when appropriate
 
 CONVERSATION GOAL: Get them to ask for contact information or schedule a consultation."""
 
@@ -59,32 +69,32 @@ CONVERSATION GOAL: Get them to ask for contact information or schedule a consult
         """Load simple knowledge base without external dependencies"""
         knowledge_base = {
             "singapore": {
-                "incorporation": "Singapore Private Limited Company can be incorporated in 1-2 business days. Minimum 1 director required (can be foreigner). Minimum paid-up capital SGD $1. Corporate secretary mandatory.",
+                "incorporation": "Singapore Private Limited Company can be incorporated usually around one week. Minimum 1 director required (can be foreigner). Minimum paid-up capital SGD $1. Corporate secretary mandatory.",
                 "taxation": "Corporate tax rate 17%. No capital gains tax. Extensive tax incentives available. Annual filing required.",
                 "benefits": "Strategic location, business-friendly environment, strong legal framework, access to ASEAN markets."
             },
             "hong_kong": {
-                "incorporation": "Hong Kong Limited Company incorporation takes 1-4 business days. Minimum 1 director and 1 shareholder. Company secretary required. No minimum capital requirement.",
-                "taxation": "Profits tax rate 16.5% for corporations. No capital gains tax, dividend tax, or withholding tax. Territorial taxation system.",
-                "benefits": "Gateway to China, simple tax system, no foreign exchange controls, international financial center."
+                "incorporation": "Hong Kong Limited Company incorporation takes usually around one week. Minimum 1 director and 1 shareholder. Company secretary required. No minimum capital requirement.",
+                "taxation": "Profits tax rate 8.25% for first HK$2M and 16.5% above. No capital gains tax, dividend tax, or withholding tax. Territorial taxation system.",
+                "benefits": "International financial center, simple tax system, no foreign exchange controls, strategic Asian hub."
             },
             "uk": {
-                "incorporation": "UK Limited Company can be formed same day online. Minimum 1 director and 1 shareholder. Company secretary optional. Minimum share capital £100.",
+                "incorporation": "UK Limited Company formation usually around one week. Minimum 1 director and 1 shareholder. Company secretary optional.",
                 "taxation": "Corporation tax rate 25% (19% for small companies). VAT registration may be required. Annual confirmation statement required.",
-                "benefits": "Access to EU markets, strong legal system, established business infrastructure, English-speaking."
+                "benefits": "Access to global markets, strong legal system, established business infrastructure, English-speaking."
             },
             "usa": {
-                "incorporation": "US Corporation or LLC formation typically 1-2 weeks. Requirements vary by state. Delaware popular for corporations. Registered agent required.",
-                "taxation": "Federal corporate tax 21% plus state taxes. LLC has pass-through taxation. Complex tax compliance requirements.",
+                "incorporation": "US Corporation or LLC formation usually around one week. Requirements vary by state. Florida and New Mexico are popular options. Registered agent required.",
+                "taxation": "Federal corporate tax 21% plus state taxes. LLC has pass-through taxation. We work with several banking partners in USA.",
                 "benefits": "World's largest economy, access to capital markets, strong IP protection, established business ecosystem."
             },
             "malaysia": {
-                "incorporation": "Malaysian Sdn Bhd incorporation takes 3-14 days. Minimum 1 director (Malaysian resident required). Company secretary mandatory. Minimum capital RM 1.",
-                "taxation": "Corporate tax rate 24%. MSC status companies get tax incentives. Labuan jurisdiction offers 3% tax rate.",
-                "benefits": "ASEAN hub, multicultural workforce, government incentives, strategic location between India and China."
+                "incorporation": "Malaysian Sdn Bhd incorporation takes usually around one week. Minimum 1 director (Malaysian resident required). Company secretary mandatory.",
+                "taxation": "Corporate tax rate 24%. MSC status companies get tax incentives. Labuan jurisdiction offers attractive tax rates.",
+                "benefits": "ASEAN hub, multicultural workforce, government incentives, strategic location."
             },
             "thailand": {
-                "incorporation": "Thai Limited Company registration takes 7-15 days. Minimum 3 shareholders. Foreign ownership restrictions apply. Minimum capital THB 2 million for foreign majority.",
+                "incorporation": "Thai Limited Company registration takes usually around one week. Minimum 3 shareholders. Foreign ownership restrictions apply.",
                 "taxation": "Corporate income tax 20%. BOI promoted companies get tax privileges. VAT 7%.",
                 "benefits": "Growing economy, ASEAN member, government investment promotion, skilled workforce."
             }
